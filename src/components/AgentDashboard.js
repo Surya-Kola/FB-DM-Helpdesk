@@ -99,7 +99,6 @@ const AgentDashboard = () => {
                 setConversationId(conversation.id);
                 setName(conversation.participants.data[0].name);
                 setEmail(conversation.participants.data[0].email);
-
               }}
             >
               <div className="flex justify-between">
