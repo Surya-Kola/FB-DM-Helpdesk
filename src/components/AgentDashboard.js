@@ -53,7 +53,7 @@ const AgentDashboard = () => {
             pageAccessToken = response.data.data[0].access_token;
 
         const { data } = await axios.get(
-          `https://graph.facebook.com/v11.0/me/conversations?fields=id,participants&access_token=${pageAccessToken}`
+          `https://graph.facebook.com/v17.0/me/conversations?fields=id,participants&access_token=${pageAccessToken}`
         );
         // console.log(data.data);
          setConversationList(data.data);      
@@ -114,7 +114,7 @@ const AgentDashboard = () => {
                 <span className="mr-2">10m</span>
                 {/*code to show recently received messege time */}
               </div>
-              <p className="text-md mx-2">Available in store?</p>
+              <p className="text-sm mx-2">Available in store?</p>
               <p className="text-gray-500/50 text-sm mx-2">
                 Lorem ipsum dolor sit,{" "}
               </p>

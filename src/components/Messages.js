@@ -35,7 +35,7 @@ const Messages = (props) => {
             // console.log(pageID,pageAccessToken);
     
             const { data } = await axios.get(
-              `https://graph.facebook.com/v11.0/${conversationId}?fields=messages{from,to,message,created_time,id}&access_token=${pageAccessToken}`
+              `https://graph.facebook.com/v17.0/${conversationId}?fields=messages{from,to,message,created_time,id}&access_token=${pageAccessToken}`
             );
         // console.log(data);
         setMessages_data(data.messages.data);

@@ -5,6 +5,7 @@ import Login from './components/Login';
 import AgentDashboard from './components/AgentDashboard';
 import ConnectFB from './components/ConnectFB';
 import DeletePage from './components/DeletePage';
+import PageNotFound from './components/PageNotFound';
 
 
 function App() {
@@ -13,10 +14,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<SignUp/>} />
-          <Route path='/login' element={<Login/>} />
+          {/* <Route path='/login' element={<Login/>} /> */}
           <Route path='/connect-fb' element={<ConnectFB/>}/>
           <Route path='/agent' element={<AgentDashboard/>} />
           <Route path='/delete-page' element={<DeletePage/>} />
+          <Route path='*' element={<PageNotFound/>} />
         </Routes>
       </BrowserRouter>
     </div>

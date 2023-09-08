@@ -3,12 +3,11 @@ import React, { useState } from "react";
 import { auth } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
-import { useNavigate } from "react-router-dom";
-// import { Link, useNavigate } from "react-router-dom";
-// import Login from "./Login";
+import { Link, useNavigate } from "react-router-dom";
+import Login from "./Login";
 
 function SignUp() {
-  const navigate =  useNavigate();
+  const navigate = useNavigate();
 
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
@@ -27,7 +26,7 @@ function SignUp() {
       });
   };
   const addUser = async () => {
-    const docRef = collection(db,"User_db");
+    const docRef = collection(db, "User_db");
     try {
       await addDoc(docRef, {
         UserName: userName,
@@ -89,7 +88,7 @@ function SignUp() {
             className="text-white rounded-md w-full p-2 text-xl bg-[#1e4d91]"
             type="submit"
           >
-            Sign Up
+            <a href="/login">Sign Up</a>
           </button>
         </form>
         <div className="mt-2 text-center">
