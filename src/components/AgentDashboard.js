@@ -151,11 +151,11 @@ const AgentDashboard = () => {
             <p className="text-sm mb-2 text-gray-500/50">• Offline</p>
           </div>
           <div className="flex justify-center">
-            <div className=" flex justify-center items-center rounded-md px-2 mr-2 bg-[#fefefe] border-2 border-gray-400">
+            <div className=" flex justify-center items-center rounded-md px-2 mr-2 bg-[#fefefe] border-2 border-gray-400 hover:bg-[#a0c8d7]">
               <img className="w-8 h-8" src={Call} alt="" />
               <p className="">Call</p>
             </div>
-            <div className="flex justify-center items-center rounded-md px-2 ml-2 bg-[#fefefe] border-2 border-gray-400">
+            <div className="flex justify-center items-center rounded-md px-2 ml-2 bg-[#fefefe] border-2 border-gray-400 hover:bg-[#a0c8d7]">
               <img className="w-8" src={Profile1} alt="" />
               <p>Profile</p>
             </div>
@@ -182,7 +182,7 @@ const AgentDashboard = () => {
           </div>
         </div>
         <div className="text-center">
-          <button className=" p-2 border-black border-1 " onClick={handleDeletePage}>Delete Page Integration</button>
+          <button className="my-[20%] p-2 border-black border-2 rounded-md bg-white hover:bg-[#a0c8d7] " onClick={handleDeletePage}>Delete Page Integration</button>
         </div>
       </div>
     </div>

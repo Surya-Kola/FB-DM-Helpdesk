@@ -3,51 +3,47 @@ import Pro from "../assets/pro.png";
 import axios from "axios";
 
 const Messages = (props) => {
-  const conversationId=props.conversationId;
+  const conversationId = props.conversationId;
 
-  const userAccessToken= props.userAccessToken;
+  const userAccessToken = props.userAccessToken;
   // console.log(conversationId,"conversation Id");
-  const [messages_data,setMessages_data]= useState([]);
-  useEffect(()=>{
+  const [messages_data, setMessages_data] = useState([]);
+  useEffect(() => {
     const getMessagesList = async () => {
       // console.log("called controller");
 
       console.log(userAccessToken);
       let pageID = "";
       let pageAccessToken;
-    
+
       try {
-        const response = await axios
-          .get(
-            "https://graph.facebook.com/v11.0/me/accounts?access_token=" +
-              userAccessToken
-          );
-         
-            // console.log(res);
-            // console.log(res.data.data[0].id);
-            // console.log(
-            //   "this is from the controller ",
-            //   response.data.data[0].access_token
-            // );
-            pageID = response.data.data[0].id;
-            pageAccessToken = response.data.data[0].access_token;
-         
-            // console.log(pageID,pageAccessToken);
-    
-            const { data } = await axios.get(
-              `https://graph.facebook.com/v17.0/${conversationId}?fields=messages{from,to,message,created_time,id}&access_token=${pageAccessToken}`
-            );
+        const response = await axios.get(
+          "https://graph.facebook.com/v11.0/me/accounts?access_token=" +
+            userAccessToken
+        );
+
+        // console.log(res);
+        // console.log(res.data.data[0].id);
+        // console.log(
+        //   "this is from the controller ",
+        //   response.data.data[0].access_token
+        // );
+        pageID = response.data.data[0].id;
+        pageAccessToken = response.data.data[0].access_token;
+
+        // console.log(pageID,pageAccessToken);
+
+        const { data } = await axios.get(
+          `https://graph.facebook.com/v17.0/${conversationId}?fields=messages{from,to,message,created_time,id}&access_token=${pageAccessToken}`
+        );
         // console.log(data);
         setMessages_data(data.messages.data);
-
-       
       } catch (error) {
         console.log(error);
       }
     };
     getMessagesList();
-  },[conversationId])
-
+  }, [conversationId]);
 
   // Sort messages by 'created_time'
   function formatDate(inputDate) {
@@ -76,7 +72,7 @@ const Messages = (props) => {
         key={i}
         className={`flex ${
           isFromHelpdesk ? "flex-row-reverse" : "flex-col"
-        } items-start my-4`}
+        } items-start my-4 overflow-hidden`}
       >
         <div>
           {isFromHelpdesk ? (
@@ -110,7 +106,7 @@ const Messages = (props) => {
 
           <span
             className={`text-[12px] font-semibold ${
-              isFromHelpdesk ? "" : "ml-2"
+              isFromHelpdesk ? "" : "ml-10"
             }`}
           >
             {formatDate(chat.created_time)}
@@ -121,5 +117,4 @@ const Messages = (props) => {
   });
 };
 
-export default Messages;
-
+export default Messages;
