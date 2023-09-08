@@ -13,6 +13,7 @@ import Messages from "./Messages";
 import Pro from "../assets/pro.png";
 import data from "../data/conversations.json";
 import { useState } from "react";
+import DeletePage from "./DeletePage";
 // import { useEffect, useState } from "react";
 
 const AgentDashboard = () => {
@@ -184,6 +185,7 @@ const AgentDashboard = () => {
             </a>
           </div>
         </div>
+        <DeletePage />
       </div>
     </div>
   );
