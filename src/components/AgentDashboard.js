@@ -27,7 +27,7 @@ const AgentDashboard = () => {
   const navigate = useNavigate();
 
   const handleDeletePage = () => {
-    navigate("/delete-page");
+    navigate("/delete-page",{state:userAccessToken});
   };
 
 
@@ -77,7 +77,9 @@ const AgentDashboard = () => {
         <div className="flex flex-col space-y-[380px] items-center">
           {/* section 1 sidebar */}
           <div className="">
-            <img className=" rounded-md w-10 m-3" src={Logo} alt="1" />
+            <a href="https://www.richpanel.com/">
+              <img className=" rounded-md w-10 m-3" src={Logo} alt="1" />
+            </a>
             <img className="w-16" src={Conv} alt="" />
             <img className="w-16" src={User} alt="" />
             <img className="w-16" src={Analytics} alt="" />
@@ -103,7 +105,7 @@ const AgentDashboard = () => {
                 setConversationId(conversation.id);
                 setName(conversation.participants.data[0].name);
                 setEmail(conversation.participants.data[0].email);
-                
+
               }}
             >
               <div className="flex justify-between">
@@ -140,7 +142,7 @@ const AgentDashboard = () => {
           {/* useState for the chat exchange */}
           <input
             type="text"
-            className="absolute bottom-4 left-[30.5%] right-[23%] p-2 mx-2 bg-white rounded-md outline outline-blue-600"
+            className="absolute bottom-4 left-[30.5%] right-[20%] p-2 mx-2 bg-white rounded-md outline outline-blue-600"
             placeholder={`Message ${nameH}`}
           />
         </div>
@@ -187,7 +189,7 @@ const AgentDashboard = () => {
           </div>
         </div>
         <div className="text-center">
-          <button onClick={handleDeletePage}>Delete Page Integration</button>
+          <button className=" p-2 border-black border-1 " onClick={handleDeletePage}>Delete Page Integration</button>
         </div>
       </div>
     </div>

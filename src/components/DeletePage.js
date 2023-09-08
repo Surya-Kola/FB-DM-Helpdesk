@@ -1,17 +1,19 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const DeletePage = () => {
     const navigate = useNavigate();
-
+    const location = useLocation();
+    const userAccessToken = location.state;
     const handleReplyMsg = () => {
-        navigate("/agent");
+        navigate("/agent",{state:userAccessToken});
       };
       const handleDelete = () => {
-        // navigate("/delete-page");
-        
+        navigate("/connect-fb");
+
       };
   return (
+  
     <div className=" flex items-center justify-center h-screen">
       <div className="bg-white py-10 px-10 rounded-xl ">
         <h2 className="mt-1 mb-3 pb-3 px-16 text-2xl text-center">

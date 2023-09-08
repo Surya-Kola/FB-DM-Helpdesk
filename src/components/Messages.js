@@ -205,7 +205,7 @@ const Messages = (props) => {
                 className={`${
                   isFromHelpdesk
                     ? "bg-white ml-2 px-2 py-1 rounded-md"
-                    : "bg-blue-500 text-white mr-2 px-2 py-1 rounded-md"
+                    : "bg-white mr-2 px-2 py-1 rounded-md"
                 }`}
               >
                 {chat.message}
@@ -220,7 +220,7 @@ const Messages = (props) => {
                 className={`${
                   isFromHelpdesk
                     ? "bg-white ml-2 px-2 py-1 rounded-md"
-                    : "bg-blue-500 text-white mr-2 px-2 py-1 rounded-md"
+                    : "bg-white mr-2 px-2 py-1 rounded-md"
                 }`}
               >
                 {chat.message}
