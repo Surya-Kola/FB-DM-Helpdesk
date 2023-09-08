@@ -1,0 +1,17 @@
+.item1 {
+    grid-area: myArea1;
+}
+.item2 {
+    grid-area: myArea2;
+}
+.item3 {
+    grid-area: myArea3;
+}
+.item4 {
+    grid-area: myArea4;
+}
+  
+  .grid-container {
+    display: grid;
+    grid-template-areas: 'myArea1 myArea2 myArea2 myArea2 myArea2 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea3 myArea4 myArea4 myArea4 myArea4 ';
+  }
