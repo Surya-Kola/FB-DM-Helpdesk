@@ -77,7 +77,7 @@ const AgentDashboard = () => {
         <div className="flex flex-col space-y-[380px] items-center">
           {/* section 1 sidebar */}
           <div className="">
-            <a href="https://www.richpanel.com/">
+            <a href="/">
               <img className=" rounded-md w-10 m-3" src={Logo} alt="1" />
             </a>
             <img className="w-16" src={Conv} alt="" />
