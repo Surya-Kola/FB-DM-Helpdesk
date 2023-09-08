@@ -1,6 +1,4 @@
 import { useLocation, useNavigate } from "react-router-dom";
-// import { useLocation } from "react-router-dom";
-// import axios from "axios";
 import "./AgentDashboard.css";
 import Logo from "../assets/logo.png";
 import User from "../assets/user.png";
@@ -12,17 +10,13 @@ import Call from "../assets/call.png";
 import Profile1 from "../assets/profile1.png";
 import Messages from "./Messages";
 import Pro from "../assets/pro.png";
-// import data from "../data/conversations.json";
 import { useEffect, useState } from "react";
-import DeletePage from "./DeletePage";
 import axios from "axios";
-// import { useEffect, useState } from "react";
 
 const AgentDashboard = () => {
   const location = useLocation();
   const userAccessToken = location.state;
   const [conversationList, setConversationList] = useState([]);
-  // const [conversation, setConversation] = useState(null);
   const [conversationId, setConversationId] = useState(null);
   const navigate = useNavigate();
 
@@ -51,17 +45,17 @@ const AgentDashboard = () => {
           
             // console.log(res);
             // console.log(res.data.data[0].id);
-            console.log(
-              "this is from the controller ",
-              response.data.data[0].access_token
-            );
+            // console.log(
+            //   "this is from the controller ",
+            //   response.data.data[0].access_token
+            // );
             pageID = response.data.data[0].id;
             pageAccessToken = response.data.data[0].access_token;
 
         const { data } = await axios.get(
           `https://graph.facebook.com/v11.0/me/conversations?fields=id,participants&access_token=${pageAccessToken}`
         );
-        console.log(data.data);
+        // console.log(data.data);
          setConversationList(data.data);      
         
       } catch (error) {

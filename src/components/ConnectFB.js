@@ -1,17 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginSocialFacebook } from "reactjs-social-login";
 import { FacebookLoginButton } from "react-social-login-buttons";
-import axios from "axios";
 
 function ConnectFB() {
   const navigate = useNavigate();
-  const [conversationList, setConversationList] = useState([]);
+
 
   const responseFacebook = async (response) => {
     console.log(response.data);
-    let pageID;
-    let pageAccessToken;
   };
   return (
     <div className=" flex items-center justify-center h-screen">
