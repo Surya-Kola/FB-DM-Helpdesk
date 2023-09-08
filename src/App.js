@@ -4,6 +4,7 @@ import SignUp from './components/signUp';
 import Login from './components/Login';
 import AgentDashboard from './components/AgentDashboard';
 import ConnectFB from './components/ConnectFB';
+import DeletePage from './components/DeletePage';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path='/login' element={<Login/>} />
           <Route path='/connect-fb' element={<ConnectFB/>}/>
           <Route path='/agent' element={<AgentDashboard/>} />
+          <Route path='/delete-page' element={<DeletePage/>} />
         </Routes>
       </BrowserRouter>
     </div>

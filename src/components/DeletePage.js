@@ -11,7 +11,7 @@ const DeletePage = () => {
           Integrated Page: Amazon Business
         </h2>
         <button
-            className="text-white rounded-md w-full p-2 text-xl bg-[#df543c]"
+            className="text-white rounded-md w-full p-2 my-2 text-xl bg-[#df543c]"
             type="submit"
           >
             Delete Integration

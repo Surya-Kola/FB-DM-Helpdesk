@@ -1,3 +1,4 @@
+import { useLocation, useNavigate } from "react-router-dom";
 // import { useLocation } from "react-router-dom";
 // import axios from "axios";
 import "./AgentDashboard.css";
@@ -11,72 +12,65 @@ import Call from "../assets/call.png";
 import Profile1 from "../assets/profile1.png";
 import Messages from "./Messages";
 import Pro from "../assets/pro.png";
-import data from "../data/conversations.json";
-import { useState } from "react";
+// import data from "../data/conversations.json";
+import { useEffect, useState } from "react";
 import DeletePage from "./DeletePage";
+import axios from "axios";
 // import { useEffect, useState } from "react";
 
 const AgentDashboard = () => {
-  // const location = useLocation();
-  // const response = location.state;
-  // const [pageId, setPageId] = useState("");
-  // const [conversationId, setConversationId] = useState("");
+  const location = useLocation();
+  const userAccessToken = location.state;
+  const [conversationList, setConversationList] = useState([]);
   // const [conversation, setConversation] = useState(null);
-  // const [pageAccessToken, setPageAccessToken] = useState("");
-  // const [userAccessToken, setUserAccessToken] = useState("");
-
-  // // let pageID, pageAccessToken;
-  // // let meAccounts,conversations;
-
-  // const myAcc = async () => {
-  //   const meAccounts = await axios
-  //     .get(
-  //       "https://graph.facebook.com/v11.0/me/accounts?access_token=" +
-  //         response.data.accessToken
-  //     )
-  //     .then((res) => {
-  //       console.log(res);
-  //       console.log(res.data.data[0].id);
-  //       console.log(res.data.data[0].access_token);
-  //       setPageId(res.data.data[0].id);
-  //       setPageAccessToken(res.data.data[0].access_token);
-  //       setUserAccessToken(response.data.accessToken);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-  // //me/accounts we get the list of details regarding all the pages. which will be having the page id which should be given to the me/conversations.
-  // // let conversationid;
-  // const convList = async () => {
-  //   const conversations = await axios
-  //     .get(
-  //       "https://graph.facebook.com/v11.0/me/conversations?access_token="+
-  //         pageAccessToken
-  //     )
-  //     .then((res) => {
-  //       console.log(res);
-  //       console.log(res.data.data[0].id);
-  //       console.log(res.data.data)
-  //       setConversationId(res.data.data[0].id);
-  //       setConversation(res.data.data[0]);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
-  // useEffect(()=>{
-  //   myAcc();
-  //   convList();
-  // },[conversationId])
-  // if(conversation===null) return <div> loading</div>
-
-  const conversations = data.data;
-  console.log(conversations);
   const [conversationId, setConversationId] = useState(null);
-  const [nameH, setName] = useState('');
-  const [emailP, setEmail] = useState('');
+  const navigate = useNavigate();
+
+  const handleDeletePage = () => {
+    navigate("/delete-page");
+  };
+
+
+  const [nameH, setName] = useState("");
+  const [emailP, setEmail] = useState("");
+  
+  useEffect(() => {
+    const getConversationsList = async () => {
+      console.log("called controller");
+    
+      console.log(userAccessToken);
+      let pageID = "";
+      let pageAccessToken;
+    
+      try {
+        const response = await axios
+          .get(
+            "https://graph.facebook.com/v11.0/me/accounts?access_token=" +
+              userAccessToken
+          )
+          
+            // console.log(res);
+            // console.log(res.data.data[0].id);
+            console.log(
+              "this is from the controller ",
+              response.data.data[0].access_token
+            );
+            pageID = response.data.data[0].id;
+            pageAccessToken = response.data.data[0].access_token;
+
+        const { data } = await axios.get(
+          `https://graph.facebook.com/v11.0/me/conversations?fields=id,participants&access_token=${pageAccessToken}`
+        );
+        console.log(data.data);
+         setConversationList(data.data);      
+        
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getConversationsList();
+  }, []);
+  // if (!conversationId) return <div>loading...</div>
   return (
     <div className="grid-container w-[100%] h-screen">
       <div className="item1 ">
@@ -101,12 +95,15 @@ const AgentDashboard = () => {
         </div>
         {/* conversation sidebar */}
         <div>
-          {conversations.map((conversation) => (
+          {conversationList.map((conversation,ind) => (
             <div
+            key={ind}
               className="p-2 hover:bg-[#edeef0]"
-              onClick={() => {setConversationId(conversation.id);
-              setName(conversation.participants.data[0].name);
-              setEmail(conversation.participants.data[0].email);
+              onClick={() => {
+                setConversationId(conversation.id);
+                setName(conversation.participants.data[0].name);
+                setEmail(conversation.participants.data[0].email);
+                
               }}
             >
               <div className="flex justify-between">
@@ -134,9 +131,11 @@ const AgentDashboard = () => {
       {/* chat section */}
       <div className="item3 bg-[#f6f6f6]">
         {/* heading */}
-        <h1 className="text-xl font-bold bg-white px-4 py-2">{nameH===''? 'Helpdesk':nameH}</h1>
+        <h1 className="text-xl font-bold bg-white px-4 py-2">
+          {nameH === "" ? "Helpdesk" : nameH}
+        </h1>
         {/* chat feature */}
-        <Messages conversationId={conversationId} />
+        <Messages conversationId={conversationId} userAccessToken={userAccessToken} />
         <div className="flex justify-center items-center">
           {/* useState for the chat exchange */}
           <input
@@ -151,7 +150,9 @@ const AgentDashboard = () => {
         <div className="h-1/3 bg-white">
           <div className="flex flex-col justify-center items-center">
             <img className="w-[124px]" src={Pro} alt="profile" />
-            <span className="font-bold">{nameH===''? 'Helpdesk':nameH}</span>
+            <span className="font-bold">
+              {nameH === "" ? "Helpdesk" : nameH}
+            </span>
             <p className="text-sm mb-2 text-gray-500/50">• Offline</p>
           </div>
           <div className="flex justify-center">
@@ -185,7 +186,9 @@ const AgentDashboard = () => {
             </a>
           </div>
         </div>
-        <DeletePage />
+        <div className="text-center">
+          <button onClick={handleDeletePage}>Delete Page Integration</button>
+        </div>
       </div>
     </div>
   );

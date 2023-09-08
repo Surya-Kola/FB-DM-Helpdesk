@@ -24,7 +24,7 @@ function ConnectFB() {
           onResolve={(response) => {
             console.log(response);
             responseFacebook(response);
-            navigate('/agent',{ state: response });
+            navigate('/agent',{ state: response.data.accessToken });
           }}
           onReject={(error) => {
             console.log(error);
