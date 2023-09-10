@@ -13,6 +13,9 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
+  const handleLogin = () => {
+    navigate('/login')
+  }
   const signup = (e) => {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
@@ -95,10 +98,10 @@ function SignUp() {
         <div className="mt-2 text-center">
           <p>
             Already have an account?{" "}
-            <a href="/login" className="text-blue-600">
+            {/* <a href="/login" className="text-blue-600">
               login
-            </a>
-            {/* <button className="text-[#1e4d91]" onClick={navigate("/login")}>login</button> */}
+            </a> */}
+            <button className="text-[#1e4d91]" onClick={handleLogin}>login</button>
           </p>
         </div>
       </div>
