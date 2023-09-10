@@ -59,11 +59,11 @@ function Login() {
               Login
           </button>
         </form>
-        <div className="mt-2 text-center">
+        <div className="flex justify-center mt-2 text-center">
           <p>
-            New to MyApp?{" "}
+            New to MyApp?{"  "}
           </p>
-            <button className="text-[#1e4d91]" onClick={handleSignup}>Signup</button>
+            <button className="text-[#1e4d91] mx-2" onClick={handleSignup}>Signup</button>
         </div>
       </div>
     </div>
