@@ -8,6 +8,10 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const handleSignup = () => {
+    navigate('/')
+  }
+
   const logIn = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth,email,password)
@@ -58,9 +62,8 @@ function Login() {
         <div className="mt-2 text-center">
           <p>
             New to MyApp?{" "}
-            <a href="/" className="text-blue-600">
-              Sign Up
-            </a>
+            <button className="text-[#1e4d91]" onClick={handleSignup}>Signup</button>
+          </p>
           </p>
         </div>
       </div>
