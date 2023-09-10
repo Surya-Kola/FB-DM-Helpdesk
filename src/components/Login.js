@@ -62,9 +62,8 @@ function Login() {
         <div className="mt-2 text-center">
           <p>
             New to MyApp?{" "}
+          </p>
             <button className="text-[#1e4d91]" onClick={handleSignup}>Signup</button>
-          </p>
-          </p>
         </div>
       </div>
     </div>
