@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import { auth } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
-import { Link, useNavigate } from "react-router-dom";
-import Login from "./Login";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -88,7 +87,9 @@ function SignUp() {
             className="text-white rounded-md w-full p-2 text-xl bg-[#1e4d91]"
             type="submit"
           >
-            <a href="/login">Sign Up</a>
+            {/* <a href="/login"> */}
+              Sign Up
+              {/* </a> */}
           </button>
         </form>
         <div className="mt-2 text-center">
